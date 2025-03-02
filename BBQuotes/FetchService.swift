@@ -14,7 +14,7 @@ struct FetchService {
     
     private let baseURL: URL = URL (string: "https://breaking-bad-api-six.vercel.app/api")!
     
-    // https://breaking-bad-api-six.vercel.app/api/quotes/random?production=Breaking+Bad
+    //breaking-bad-api-six.vercel.app/api/quotes/random?production=[show]
     func fetchQuote(from show: String) async throws -> Quote {
         // build fetch URL
         let quoteURL = baseURL.appending(path: "quotes/random")
@@ -31,9 +31,10 @@ struct FetchService {
         return quote
     }
     
+    //breaking-bad-api-six.vercel.app/api/characters?name=[name]
     func fetchCharacter( _ name: String) async throws -> Char {
         // build fetch URL
-        let characterURL = baseURL.appending(path: "Characters")
+        let characterURL = baseURL.appending(path: "characters")
         let fetchURL = characterURL.appending(queryItems: [URLQueryItem (name: "name", value: name)])
         // fetch data
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
@@ -50,6 +51,7 @@ struct FetchService {
         
     }
     
+    //breaking-bad-api-six.vercel.app/api/deaths
     func fertchDeath ( for character: String) async throws -> Death? {
         // build fetch URL
         let fetchURL = baseURL.appending(path: "deaths")
