@@ -9,7 +9,7 @@ import Foundation
 struct Char: Decodable {
     let name: String
     let birthday: String
-    let ocupations: [String]
+    let occupations: [String]
     let images: [URL]
     let aliases: [String]
     let status: String
@@ -19,7 +19,7 @@ struct Char: Decodable {
     enum CodingKeys: CodingKey {
         case name
         case birthday
-        case ocupations
+        case occupations
         case images
         case aliases
         case status
@@ -31,7 +31,7 @@ struct Char: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.birthday = try container.decode(String.self, forKey: .birthday)
-        self.ocupations = try container.decode([String].self, forKey: .ocupations)
+        self.occupations = try container.decode([String].self, forKey: .occupations)
         self.images = try container.decode([URL].self, forKey: .images)
         self.aliases = try container.decode([String].self, forKey: .aliases)
         self.status = try container.decode(String.self, forKey: .status)
