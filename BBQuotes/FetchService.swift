@@ -52,7 +52,7 @@ struct FetchService {
     }
     
     //breaking-bad-api-six.vercel.app/api/deaths
-    func fertchDeath ( for character: String) async throws -> Death? {
+    func fertchDeath (for character: String) async throws -> Death? {
         // build fetch URL
         let fetchURL = baseURL.appending(path: "deaths")
         // fetch data
@@ -62,7 +62,11 @@ struct FetchService {
             throw FetchError.badResponse
             }
         // decode data
-        let deaths = try JSONDecoder().decode([Death].self, from: data)
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        let deaths = try decoder.decode([Death].self, from: data)
+        
         for death in deaths {
             if death.character == character {
                 return death
